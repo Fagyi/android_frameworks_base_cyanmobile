@@ -795,7 +795,6 @@ public class CmStatusBarView extends StatusBarView {
     }
 
     public static void runTaskManager(Context context) {
-        dismissKeyguards();
         Intent intentx = new Intent(Intent.ACTION_MAIN);
         intentx.setClassName("com.android.tmanager", "com.android.tmanager.TaskManagerActivity");
         intentx.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_RESET_TASK_IF_NEEDED);
@@ -812,20 +811,20 @@ public class CmStatusBarView extends StatusBarView {
 
     public static void runCustomApp(String uri, Context context) {
         if (uri != null) {
-            dismissKeyguards();
             try {
                 Intent i = Intent.parseUri(uri, 0);
                 i.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK
                         | Intent.FLAG_ACTIVITY_RESET_TASK_IF_NEEDED);
                 context.startActivity(i);
             } catch (URISyntaxException e) {
+
             } catch (ActivityNotFoundException e) {
+
             }
         }
     }
 
     public static void toggleRecentApps(Context context) {
-        dismissKeyguards();
         Intent intentx = new Intent(Intent.ACTION_MAIN);
         intentx.setClassName("com.cyanmobile.TaskSwitcher", "com.cyanmobile.TaskSwitcher.TaskSwitcherMainActivity");
         intentx.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_RESET_TASK_IF_NEEDED);
@@ -833,7 +832,6 @@ public class CmStatusBarView extends StatusBarView {
     }
 
     public static void toggleSettingsApps(Context context) {
-        dismissKeyguards();
         Intent intenty = new Intent(android.provider.Settings.ACTION_SETTINGS);
         intenty.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_RESET_TASK_IF_NEEDED);
         context.startActivity(intenty);
@@ -850,7 +848,6 @@ public class CmStatusBarView extends StatusBarView {
     }
 
     public static void runCMSettings(String what, Context context) {
-         dismissKeyguards();
          Intent intent = new Intent(Intent.ACTION_MAIN);
          intent.setClassName("com.cyanogenmod.cmparts", what);
          intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
@@ -858,7 +855,6 @@ public class CmStatusBarView extends StatusBarView {
     }
 
     public static void runSettings(String what, Context context) {
-         dismissKeyguards();
          Intent intent = new Intent(Intent.ACTION_MAIN);
          intent.setClassName("com.android.settings", what);
          intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
@@ -866,7 +862,6 @@ public class CmStatusBarView extends StatusBarView {
     }
 
     public static void runPhoneSettings(String what, Context context) {
-         dismissKeyguards();
          Intent intent = new Intent(Intent.ACTION_MAIN);
          intent.setClassName("com.android.phone", what);
          intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
@@ -874,7 +869,6 @@ public class CmStatusBarView extends StatusBarView {
     }
 
     public static void runLauncherSettings(Context context) {
-       dismissKeyguards();
        try {
          Intent intenta = new Intent(Intent.ACTION_MAIN);
          intenta.setClassName("com.wordpress.chislonchow.legacylauncher", "com.wordpress.chislonchow.legacylauncher.MyLauncherSettings");
@@ -893,7 +887,6 @@ public class CmStatusBarView extends StatusBarView {
     }
 
     public static void toggleLastApp(Context context) {
-        dismissKeyguards();
         int lastAppId = 0;
         int looper = 1;
         String packageName;
@@ -1015,7 +1008,8 @@ public class CmStatusBarView extends StatusBarView {
 
     public static void dismissKeyguards() {
         try {
-             // dismiss the lock screen when the activity starts.
+             // Also, notifications can be launched from the lock screen,
+             // so dismiss the lock screen when the activity starts.
              ActivityManagerNative.getDefault().dismissKeyguardOnNextActivity();
         } catch (RemoteException e) {
         }

@@ -27,7 +27,7 @@ import android.util.Slog;
 
 
 public class ExpandedView extends LinearLayout {
-    PhoneStatusBar mService;
+    StatusBarService mService;
     ItemTouchDispatcher mTouchDispatcher;
     int mPrevHeight = -1;
 
@@ -70,10 +70,10 @@ public class ExpandedView extends LinearLayout {
         super.onLayout(changed, left, top, right, bottom);
         int height = bottom - top;
         if (height != mPrevHeight) {
-            //Slog.d(PhoneStatusBar.TAG, "height changed old=" + mPrevHeight
+            //Slog.d(StatusBarService.TAG, "height changed old=" + mPrevHeight
             //     + " new=" + height);
             mPrevHeight = height;
-            mService.updateExpandedViewPos(PhoneStatusBar.EXPANDED_LEAVE_ALONE);
+            mService.updateExpandedViewPos(StatusBarService.EXPANDED_LEAVE_ALONE);
         }
     }
 }

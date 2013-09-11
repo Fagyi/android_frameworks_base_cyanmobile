@@ -22,14 +22,14 @@ import android.graphics.ColorFilter;
 import android.graphics.Rect;
 import android.util.Slog;
 
-public class FixedSizeDrawable extends Drawable {
+class FixedSizeDrawable extends Drawable {
     Drawable mDrawable;
     int mLeft;
     int mTop;
     int mRight;
     int mBottom;
 
-    public FixedSizeDrawable(Drawable that) {
+    FixedSizeDrawable(Drawable that) {
         mDrawable = that;
     }
 

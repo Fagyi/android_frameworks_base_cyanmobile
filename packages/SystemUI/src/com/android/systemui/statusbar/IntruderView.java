@@ -37,7 +37,7 @@ import android.widget.TextView;
 import com.android.systemui.R;
 
 public class IntruderView extends LinearLayout {
-    PhoneStatusBar mService;
+    StatusBarService mService;
     ItemTouchDispatcher mTouchDispatcher;
     private ScrollView mIntruderScrollView;
     private TextView mIntruderLatestTitle;
